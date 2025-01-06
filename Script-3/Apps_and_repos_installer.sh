@@ -118,8 +118,8 @@ List_of_extensions=(
     "bradgashler.tailwindcss-intellisense"
 )
 
-for item in "$List_of_extensions[@]"; do
-    code --install-extension $item && echo "installed $item"
+for item in "${List_of_extensions[@]}"; do
+    code --install-extension "$item" && echo "installed $item"
 done
 
 #GitHub and git configuraions
