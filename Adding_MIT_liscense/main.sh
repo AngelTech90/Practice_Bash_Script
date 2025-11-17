@@ -54,28 +54,10 @@ for dir in "$SCRIPT_DIR"/*/ ; do
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}  ✓ LICENSE created successfully${NC}"
         
-        # Check if upload_git_changes.sh exists in the repo directory
-        if [ -f "$dir/upload_git_changes.sh" ]; then
-            echo -e "  → Running upload_git_changes.sh..."
-            
-            # Change to the directory and run the upload script
-            cd "$dir"
-            bash upload_git_changes.sh
-            
-            if [ $? -eq 0 ]; then
-                echo -e "${GREEN}  ✓ Changes uploaded successfully${NC}\n"
-                ((successful++))
-            else
-                echo -e "${RED}  ✗ Failed to upload changes${NC}\n"
-                ((failed++))
-            fi
-            
-            # Return to script directory
-            cd "$SCRIPT_DIR"
-        else
-            echo -e "${RED}  ✗ upload_git_changes.sh not found in $dir_name${NC}\n"
-            ((failed++))
-        fi
+        # Change to the directory and run the upload script
+        cd "$dir"
+        upload_changes_git.sh
+
     else
         echo -e "${RED}  ✗ Failed to create LICENSE${NC}\n"
         ((failed++))
